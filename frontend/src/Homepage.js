@@ -17,10 +17,8 @@ import Box from '@material-ui/core/Box';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
+      {'Copyright © K08'}
+      {' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -49,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
   link: {
     margin: theme.spacing(1, 1.5),
   },
+  sideinfo: {
+    margin: theme.spacing(2, 4),
+  },
 }));
 
 export default function Homepage() {
@@ -75,6 +76,23 @@ export default function Homepage() {
             </Button>
             </Toolbar>
         </AppBar>
+        <Grid container>
+          <Grid item xs={6}>
+          <Typography variant="h4" className={classes.sideinfo}>Nama Lapangan Futsal</Typography>
+          <Typography variant="body1" className={classes.sideinfo}>Alamat</Typography>
+          <img src="https://4.bp.blogspot.com/-FoKOxTkDKiI/Vz1KsTvuH7I/AAAAAAAAATw/np2bzyi_ihUDppMhzLxHuQ3ALb283LMcwCLcB/s1600/LapanganFutsal%2BVinyl.jpg"
+            alt="lapangan futsal" width="600" length="400" className={classes.sideinfo}/>  
+          </Grid>
+          <Grid item xs={6}>
+            <Card variant="outlined">
+            <Typography>Booking</Typography>
+            <form noValidate>
+
+            </form>
+            </Card>
+          </Grid>  
+        </Grid>
+        
         <Box mt={5}>
           <Copyright />
         </Box>
