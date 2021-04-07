@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -13,6 +13,10 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 function Copyright() {
   return (
@@ -52,6 +56,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const TanggalPesan = () => {
+  const [bookDate, setBookDate] = useState(new Date());
+  return (
+    <div>
+      <Typography>Tanggal</Typography>
+      <DatePicker selected={bookDate} onChange={date => setBookDate(date)} />
+    </div>
+    
+  );
+};
+const options = [
+  'A', 'B',
+];
+const defaultOption = options[0];
+
 export default function Homepage() {
   const classes = useStyles();
 
@@ -86,9 +105,11 @@ export default function Homepage() {
           <Grid item xs={6}>
             <Card variant="outlined">
             <Typography>Booking</Typography>
-            <form noValidate>
-
-            </form>
+            <TanggalPesan/>
+            <Dropdown options={options} 
+                      //onChange={this._onSelect} 
+                      value={defaultOption} 
+                      placeholder="Select an option" />
             </Card>
           </Grid>  
         </Grid>
