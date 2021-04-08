@@ -18,6 +18,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import BookingForm from './BookingForm';
 
 function Copyright() {
   return (
@@ -57,38 +58,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TanggalPesan = () => {
-  const [bookDate, setBookDate] = useState(new Date());
-  return (
-    <div>
-      <Typography>Tanggal</Typography>
-      <DatePicker selected={bookDate} onChange={date => setBookDate(date)} />
-    </div>
-    
-  );
-};
-
-const ChooseField = () => {
-  const [field, setField] = useState('');
-  const handleChange = (event) => {
-    setField(event.target.value);
-  };
-  return (
-    <div>
-      <Typography>Lapangan</Typography>
-        <Select
-          labelId="select-field"
-          id="select-field"
-          value={field}
-          onChange={handleChange}
-        >
-          <MenuItem value="a">Lapangan A</MenuItem>
-          <MenuItem value="b">Lapangan B</MenuItem>
-        </Select>
-    </div>
-  );
-};
-
 export default function Homepage() {
   const classes = useStyles();
 
@@ -123,8 +92,7 @@ export default function Homepage() {
           <Grid item xs={6}>
             <Card variant="outlined">
             <Typography>Booking</Typography>
-            <TanggalPesan/>
-            <ChooseField/>
+            <BookingForm/>
             </Card>
           </Grid>  
         </Grid>
