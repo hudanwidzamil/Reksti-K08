@@ -15,8 +15,9 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 
 function Copyright() {
   return (
@@ -66,10 +67,27 @@ const TanggalPesan = () => {
     
   );
 };
-const options = [
-  'A', 'B',
-];
-const defaultOption = options[0];
+
+const ChooseField = () => {
+  const [field, setField] = useState('');
+  const handleChange = (event) => {
+    setField(event.target.value);
+  };
+  return (
+    <div>
+      <Typography>Lapangan</Typography>
+        <Select
+          labelId="select-field"
+          id="select-field"
+          value={field}
+          onChange={handleChange}
+        >
+          <MenuItem value="a">Lapangan A</MenuItem>
+          <MenuItem value="b">Lapangan B</MenuItem>
+        </Select>
+    </div>
+  );
+};
 
 export default function Homepage() {
   const classes = useStyles();
@@ -106,10 +124,7 @@ export default function Homepage() {
             <Card variant="outlined">
             <Typography>Booking</Typography>
             <TanggalPesan/>
-            <Dropdown options={options} 
-                      //onChange={this._onSelect} 
-                      value={defaultOption} 
-                      placeholder="Select an option" />
+            <ChooseField/>
             </Card>
           </Grid>  
         </Grid>
