@@ -2,22 +2,13 @@ import React, {useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import BookingForm from './BookingForm';
 
 function Copyright() {
@@ -56,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
   sideinfo: {
     margin: theme.spacing(2, 4),
   },
+  card: {
+    margin: theme.spacing(5, 15),
+  },
 }));
 
 export default function Homepage() {
@@ -90,8 +84,7 @@ export default function Homepage() {
             alt="lapangan futsal" width="600" length="400" className={classes.sideinfo}/>  
           </Grid>
           <Grid item xs={6}>
-            <Card variant="outlined">
-            <Typography>Booking</Typography>
+            <Card variant="outlined" className={classes.card}>
             <BookingForm/>
             </Card>
           </Grid>  

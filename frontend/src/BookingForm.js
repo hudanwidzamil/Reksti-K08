@@ -1,4 +1,4 @@
-import { FormControl, FormControlLabel, FormLabel, Menu, MenuItem, Radio, RadioGroup, Select } from '@material-ui/core';
+import { Button, FormControl, FormControlLabel, FormLabel, makeStyles, Typography, MenuItem, Radio, RadioGroup, Select } from '@material-ui/core';
 import React, {useState, useEffect} from 'react';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
@@ -16,7 +16,19 @@ const initialValues = {
     paymentMethod: 'gopay',
 }
 
+const useStyles = makeStyles((theme)=>({
+    input:{
+        padding:40,
+        
+    },
+    title:{
+        marginTop:5,
+    },
+}))
+
 export default function BookingForm(){
+
+    const classes = useStyles();
 
     const [values, setValues] = useState(initialValues);
 
@@ -36,9 +48,10 @@ export default function BookingForm(){
 
     return (
         <form>
-            <FormControl>
+            <FormControl className={classes.input}>
+            <Typography>Booking</Typography>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <FormLabel>Tanggal</FormLabel>
+                    <FormLabel className={classes.title}>Tanggal</FormLabel>
                     <KeyboardDatePicker
                         disableToolbar
                         variant="inline"
@@ -51,7 +64,7 @@ export default function BookingForm(){
                     />
                 </MuiPickersUtilsProvider>
                 
-                <FormLabel>Waktu Mulai</FormLabel>
+                <FormLabel className={classes.title}>Waktu Mulai</FormLabel>
                 <Select
                 name="startTime"
                 label="startTime"
@@ -72,7 +85,7 @@ export default function BookingForm(){
                     <MenuItem value={22}>22.00</MenuItem>
                 </Select>
                 
-                <FormLabel>Waktu Akhir</FormLabel>
+                <FormLabel className={classes.title}>Waktu Akhir</FormLabel>
                 <Select
                 name="endTime"
                 label="endTime"
@@ -93,7 +106,7 @@ export default function BookingForm(){
                     <MenuItem value={22}>22.00</MenuItem>
                 </Select>             
                 
-                <FormLabel>Lapangan</FormLabel>
+                <FormLabel className={classes.title}>Lapangan</FormLabel>
                 <RadioGroup row
                 name="field"
                 value={values.field}
@@ -102,7 +115,7 @@ export default function BookingForm(){
                     <FormControlLabel value ="b" control={<Radio/>} label="Lapangan B"/>
                 </RadioGroup>
                 
-                <FormLabel>Metode pembayaran</FormLabel>
+                <FormLabel className={classes.title}>Metode pembayaran</FormLabel>
                 <RadioGroup row
                 name="paymentMethod"
                 value={values.paymentMethod}
@@ -111,6 +124,7 @@ export default function BookingForm(){
                     <FormControlLabel value ="ovo" control={<Radio/>} label="OVO"/>
                     <FormControlLabel value ="linkaja" control={<Radio/>} label="LinkAja"/>
                 </RadioGroup>
+            <Button>PESAN</Button>
             </FormControl>
         </form>
     )
