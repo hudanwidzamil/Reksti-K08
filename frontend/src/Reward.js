@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import BookingForm from './BookingForm';
 
 function Copyright() {
   return (
@@ -52,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Homepage() {
+export default function Reward() {
   const classes = useStyles();
 
   return (
@@ -61,9 +60,9 @@ export default function Homepage() {
         <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
             <Toolbar className={classes.toolbar}>
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-              <Link href="/" variant="inherit" color="inherit">
-                BookSal
-              </Link>
+                <Link href="/" variant="inherit" color="inherit">
+                  BookSal
+                </Link>
             </Typography>
             <nav>
                 <Link variant="button" color="textPrimary" href="/booking" className={classes.link}>
@@ -78,19 +77,8 @@ export default function Homepage() {
             </Button>
             </Toolbar>
         </AppBar>
-        <Grid container>
-          <Grid item xs={6}>
-          <Typography variant="h4" className={classes.sideinfo}>Nama Lapangan Futsal</Typography>
-          <Typography variant="body1" className={classes.sideinfo}>Alamat</Typography>
-          <img src="https://4.bp.blogspot.com/-FoKOxTkDKiI/Vz1KsTvuH7I/AAAAAAAAATw/np2bzyi_ihUDppMhzLxHuQ3ALb283LMcwCLcB/s1600/LapanganFutsal%2BVinyl.jpg"
-            alt="lapangan futsal" width="600" length="400" className={classes.sideinfo}/>  
-          </Grid>
-          <Grid item xs={6}>
-            <Card variant="outlined" className={classes.card}>
-            <BookingForm/>
-            </Card>
-          </Grid>  
-        </Grid>
+        
+        <Typography variant="h4" className={classes.sideinfo}>Reward and Loyalty</Typography>
         
         <Box mt={5}>
           <Copyright />
