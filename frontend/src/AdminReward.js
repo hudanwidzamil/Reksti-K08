@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import { Paper, Table, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 
 function Copyright() {
   return (
@@ -19,26 +18,6 @@ function Copyright() {
       {new Date().getFullYear()}
       {'.'}
     </Typography>
-  );
-}
-
-function BookingList() {
-  return (
-    <TableContainer component={Paper} style={{margin:35,width:'90%'}}>
-      <Table >
-        <TableHead>
-          <TableRow>
-            <TableCell>Book ID</TableCell>
-            <TableCell>Tanggal</TableCell>
-            <TableCell>Waktu Mulai</TableCell>
-            <TableCell>Waktu Akhir</TableCell>
-            <TableCell>Metode bayar</TableCell>
-            <TableCell>Total</TableCell>
-          </TableRow>
-        </TableHead>
-
-      </Table>
-    </TableContainer>
   );
 }
 
@@ -55,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     flexWrap: 'wrap',
-    background: 'linear-gradient(45deg, #009688 30%, #a2cf6e 90%)'
+    background: 'linear-gradient(45deg, #519689 50%, #d2cf6f 75%)'
   },
   toolbarTitle: {
     flexGrow: 1,
@@ -72,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MyBooking() {
+export default function AdminReward() {
   const classes = useStyles();
 
   return (
@@ -81,26 +60,25 @@ export default function MyBooking() {
         <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
             <Toolbar className={classes.toolbar}>
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-                <Link href="/" variant="inherit" color="inherit">
-                  BookSal
-                </Link>
+              <Link href="/admin" variant="inherit" color="inherit">
+                BookSal
+              </Link>
             </Typography>
             <nav>
-                <Link variant="button" color="textPrimary" href="/booking" className={classes.link}>
-                    Booking Saya
+                <Link variant="button" color="textPrimary" href="/admin/member" className={classes.link}>
+                    Member
                 </Link>
-                <Link variant="button" color="textPrimary" href="/reward" className={classes.link}>
+                <Link variant="button" color="textPrimary" href="/admin/reward" className={classes.link}>
                     Reward and Loyalty
                 </Link>
             </nav>
-            <Button href="/login" color="primary" variant="outlined" className={classes.link}>
+            <Button href="/admin/login" color="primary" variant="outlined" className={classes.link}>
                 Login
             </Button>
             </Toolbar>
         </AppBar>
+        <Typography variant="h4" className={classes.sideinfo}>Reward and Loyalty</Typography>
         
-        <Typography variant="h4" className={classes.sideinfo}>Booking Saya</Typography>
-        <BookingList/>
         <Box mt={5}>
           <Copyright />
         </Box>
