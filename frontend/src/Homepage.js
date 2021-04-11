@@ -52,9 +52,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Homepage() {
+const App = () => {
   const classes = useStyles();
 
+  //login things
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
+
+  const handleLogoutClick = (e) =>{
+    e.preventDefault();
+    //call logout api
+  }
+
+  const renderAuthButton = ()=>{
+    if(isLoggedIn){
+      return <Button color="primary" variant="outlined" className={classes.link} onClick={handleLogoutClick}>Logout</Button>
+    } else{
+      return <Button href="/login" color="primary" variant="outlined" className={classes.link}>Login</Button>
+    }
+  }
   return (
     <React.Fragment>
         <CssBaseline />
@@ -73,9 +89,7 @@ export default function Homepage() {
                     Reward and Loyalty
                 </Link>
             </nav>
-            <Button href="/login" color="primary" variant="outlined" className={classes.link}>
-                Login
-            </Button>
+            {renderAuthButton()}
             </Toolbar>
         </AppBar>
         <Grid container>
@@ -98,3 +112,5 @@ export default function Homepage() {
     </React.Fragment>
   );
 }
+
+export default App;
