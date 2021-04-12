@@ -1,21 +1,16 @@
 require('dotenv').config()
-// const dbUrl = process.env.MONGO_URL
 const mongoose = require('mongoose')
-// const autoIncrement = require('mongoose-auto-increment')
-// var connection = mongoose.createConnection(dbUrl, {
-//   useCreateIndex: true,
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// })
-// autoIncrement.initialize(connection)
-const db = require('../models/saldo.models')
+const db = require('../models/admin.models')
 
-const createUser = async (NIM, nama, saldo) => {
+const createAdmin = async (admin_id, username_admin, password, alamat, noHP,namaAkun) => {
     try {
         const result = db.create({
-            NIM : NIM,
-            Nama : nama,
-            Saldo : saldo
+            admin_id : admin_id,
+            username_admin : username_admin,
+            password : password,
+            alamat: alamat,
+            noHP:noHP,
+            namaAkun:namaAkun
         })
         return result
     } catch (err) {
@@ -23,24 +18,24 @@ const createUser = async (NIM, nama, saldo) => {
     }
 }
 
-const getSaldo = async (NIM,nama) => {
-    try {
+// const getSaldo = async (NIM,nama) => {
+//     try {
         
-        const saldo = await db.findOne({
-            NIM : NIM,
-            Nama : nama
-        })
-        return saldo
-    } catch (err) {
-        throw new Error(err)
-    }
-}
+//         const saldo = await db.findOne({
+//             NIM : NIM,
+//             Nama : nama
+//         })
+//         return saldo
+//     } catch (err) {
+//         throw new Error(err)
+//     }
+// }
 
-const deleteAkun = async (NIM,nama) => {
+const deleteAdmin = async (username_admin,password) => {
     try {
         const akun = await db.deleteOne({
-            NIM : NIM,
-            Nama : nama
+            username_admin : username_admin,
+            password : password
         })
         return akun
     } catch (err) {
@@ -48,30 +43,28 @@ const deleteAkun = async (NIM,nama) => {
     }
 }
 
-const tambahSaldo = async (NIM,nama,saldo) => {
-    try {
-        var saldoawal = await db.findOne({
-            NIM : NIM,
-            Nama : nama
-        })
-        console.log(typeof saldoawal.Saldo )
-        const sisa = await db.updateOne({
-            NIM : NIM,
-            Nama : nama
-        },{
-            $set : {
-                Saldo : saldoawal.Saldo + parseInt(saldo)
-            }
-        })
-        return sisa
-    } catch (err) {
-        throw new Error(err)
-    }
-}
+// const tambahSaldo = async (NIM,nama,saldo) => {
+//     try {
+//         var saldoawal = await db.findOne({
+//             NIM : NIM,
+//             Nama : nama
+//         })
+//         console.log(typeof saldoawal.Saldo )
+//         const sisa = await db.updateOne({
+//             NIM : NIM,
+//             Nama : nama
+//         },{
+//             $set : {
+//                 Saldo : saldoawal.Saldo + parseInt(saldo)
+//             }
+//         })
+//         return sisa
+//     } catch (err) {
+//         throw new Error(err)
+//     }
+// }
 
 module.exports = { 
-    createUser,
-    getSaldo,
-    deleteAkun,
-    tambahSaldo
+    createAdmin,
+    deleteAdmin
  }

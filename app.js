@@ -11,7 +11,7 @@ require('dotenv').config()
 
 
 //mongo connect
-mongoose.connect('mongodb+srv://naufalalimw:nalimw12@cluster0.kv1bh.mongodb.net/reksti08?retryWrites=true&w=majority').then(
+mongoose.connect('mongodb://naufalalimw:nalimw12@cluster0-shard-00-00.kv1bh.mongodb.net:27017,cluster0-shard-00-01.kv1bh.mongodb.net:27017,cluster0-shard-00-02.kv1bh.mongodb.net:27017/reksti08?ssl=true&replicaSet=atlas-ezvjbz-shard-0&authSource=admin&retryWrites=true&w=majority').then(
       db => {
         console.log('Connected to db server')
         console.log('Connection state: ' + mongoose.connection.readyState)
@@ -28,9 +28,9 @@ mongoose.connect('mongodb+srv://naufalalimw:nalimw12@cluster0.kv1bh.mongodb.net/
 
 const pelangganRoutes = require('./routes/pelanggan.routes')
 const adminRoutes = require('./routes/admin.routes')
-const lapanganRoutes = require('./routes/lapangan.routes')
-const reservasiRoutes = require('./routes/reservasi.routes')
-const promoRoutes = require('./routes/promo.routes')
+// const lapanganRoutes = require('./routes/lapangan.routes')
+// const reservasiRoutes = require('./routes/reservasi.routes')
+// const promoRoutes = require('./routes/promo.routes')
 // App
 const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -41,8 +41,8 @@ app.use(cors())
 
 app.use(pelangganRoutes)
 app.use(adminRoutes)
-app.use(lapanganRoutes)
-app.use(reservasiRoutes)
-app.use(promoRoutes)
+// app.use(lapanganRoutes)
+// app.use(reservasiRoutes)
+// app.use(promoRoutes)
 
 module.exports = app;

@@ -1,31 +1,27 @@
 const mongoose = require('mongoose')
 const autoIncrement = require('mongoose-auto-increment')
 
-const adminSchema = mongoose.Schema({
-  admin_id: {
+const lapanganSchema = mongoose.Schema({
+  lapangan_id: {
     type: Number,
     required: true,
     unique: true
   },
   
-  username_admin: {
-    type: String,
+  luas_lapangan: {
+    type: Int16Array,
     required: true
   },
-  password: {
-    type: String,
+  hargasewa: {
+    type: Int16Array,
     required: true
   },
-  alamat: {
-    type: String,
+  jamtersedia: {
+    type: Date,
     required: true
   },
-  noHP: {
-    type: String,
-    required: true
-  },
-  namaAkun: {
-    type: String,
+  ketersediaan: {
+    type: Boolean,
     required: true
   },
   // Only added when book is returned
@@ -37,11 +33,11 @@ const adminSchema = mongoose.Schema({
 //   ]
 })
 
-memberSchema.plugin(autoIncrement.plugin, {
-  model: 'Admin',
-  field: 'admin_id'
-})
+// memberSchema.plugin(autoIncrement.plugin, {
+//   model: 'Lapangan',
+//   field: 'lapangan_id'
+// })
 
-const Admin = mongoose.model('Admin', adminSchema, 'Admins')
+const Lapangan = mongoose.model('Lapangan', lapanganSchema, 'Lapangans')
 
-module.exports = Admin
+module.exports = Lapangan
