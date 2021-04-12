@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -52,8 +52,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
+const SignInSide = () => {
   const classes = useStyles();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -73,11 +76,12 @@ export default function SignInSide() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
               autoFocus
+              defaultValue={username}
+              onChange={e => {setUsername(e.target.value)}}
             />
             <TextField
               variant="outlined"
@@ -88,7 +92,8 @@ export default function SignInSide() {
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
+              defaultValue={password}
+              onChange={e => {setPassword(e.target.value)}}
             />
             <Button
               type="submit"
@@ -115,3 +120,5 @@ export default function SignInSide() {
     </Grid>
   );
 }
+
+export default SignInSide;
