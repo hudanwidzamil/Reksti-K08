@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import { Paper, Table, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 
 function Copyright() {
   return (
@@ -18,6 +19,22 @@ function Copyright() {
       {new Date().getFullYear()}
       {'.'}
     </Typography>
+  );
+}
+
+function RewardList() {
+  return (
+    <TableContainer component={Paper} style={{margin:35,width:'40%'}}>
+      <Table >
+        <TableHead>
+          <TableRow>
+            <TableCell>Reward amount</TableCell>
+            <TableCell>Voucher Code</TableCell>
+          </TableRow>
+        </TableHead>
+
+      </Table>
+    </TableContainer>
   );
 }
 
@@ -75,7 +92,8 @@ export default function AdminReward() {
             </Toolbar>
         </AppBar>
         <Typography variant="h4" className={classes.sideinfo}>Reward and Loyalty</Typography>
-        
+        <RewardList/>
+
         <Box mt={5}>
           <Copyright />
         </Box>

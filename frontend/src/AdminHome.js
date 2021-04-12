@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import { Paper, Table, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 
 function Copyright() {
   return (
@@ -18,6 +19,27 @@ function Copyright() {
       {new Date().getFullYear()}
       {'.'}
     </Typography>
+  );
+}
+
+function BookingList() {
+  return (
+    <TableContainer component={Paper} style={{margin:35,width:'90%'}}>
+      <Table >
+        <TableHead>
+          <TableRow>
+            <TableCell>Book ID</TableCell>
+            <TableCell>Tanggal</TableCell>
+            <TableCell>Nama</TableCell>
+            <TableCell>Waktu Mulai</TableCell>
+            <TableCell>Waktu Akhir</TableCell>
+            <TableCell>Metode bayar</TableCell>
+            <TableCell>Total</TableCell>
+          </TableRow>
+        </TableHead>
+
+      </Table>
+    </TableContainer>
   );
 }
 
@@ -75,7 +97,7 @@ export default function AdminHome() {
             </Toolbar>
         </AppBar>
         <Typography variant="h4" className={classes.sideinfo}>List Booking</Typography>
-        
+        <BookingList/>
         <Box mt={5}>
           <Copyright />
         </Box>
