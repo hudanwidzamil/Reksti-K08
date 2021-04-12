@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Reward() {
+const Reward = () => {
   const classes = useStyles();
 
   return (
@@ -103,3 +103,5 @@ export default function Reward() {
     </React.Fragment>
   );
 }
+
+export default Reward;

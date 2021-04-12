@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MyBooking() {
+const MyBooking= () => {
   const classes = useStyles();
 
   return (
@@ -107,3 +107,5 @@ export default function MyBooking() {
     </React.Fragment>
   );
 }
+
+export default MyBooking;

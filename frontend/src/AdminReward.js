@@ -61,7 +61,7 @@ export default function AdminReward() {
             <Toolbar className={classes.toolbar}>
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
               <Link href="/admin" variant="inherit" color="inherit">
-                BookSal
+                BookSal Admin
               </Link>
             </Typography>
             <nav>
@@ -72,9 +72,6 @@ export default function AdminReward() {
                     Reward and Loyalty
                 </Link>
             </nav>
-            <Button href="/admin/login" color="primary" variant="outlined" className={classes.link}>
-                Login
-            </Button>
             </Toolbar>
         </AppBar>
         <Typography variant="h4" className={classes.sideinfo}>Reward and Loyalty</Typography>
