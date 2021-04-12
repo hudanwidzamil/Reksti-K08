@@ -26,7 +26,11 @@ mongoose.connect('mongodb+srv://naufalalimw:nalimw12@cluster0.kv1bh.mongodb.net/
 
 
 
-const saldoRoutes = require('./routes/saldo.routes')
+const pelangganRoutes = require('./routes/pelanggan.routes')
+const adminRoutes = require('./routes/admin.routes')
+const lapanganRoutes = require('./routes/lapangan.routes')
+const reservasiRoutes = require('./routes/reservasi.routes')
+const promoRoutes = require('./routes/promo.routes')
 // App
 const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -35,6 +39,10 @@ app.use(bodyParser.raw())
 app.use(cookieParser())
 app.use(cors())
 
-app.use(saldoRoutes)
+app.use(pelangganRoutes)
+app.use(adminRoutes)
+app.use(lapanganRoutes)
+app.use(reservasiRoutes)
+app.use(promoRoutes)
 
 module.exports = app;
