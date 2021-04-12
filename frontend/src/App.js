@@ -7,6 +7,7 @@ import Reward from './Reward';
 import AdminHome from './AdminHome';
 import AdminMember from './AdminMember';
 import AdminReward from './AdminReward';
+import withPageView from './withPageView';
 
 import {
   BrowserRouter as Router,
@@ -20,11 +21,11 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route exact path="/"><Homepage/></Route>
-          <Route path="/login"><SignInSide/></Route>
-          <Route path="/register"><SignUp/></Route>
-          <Route path="/booking"><MyBooking/></Route>
-          <Route path="/reward"><Reward/></Route>
+          <Route exact path="/" component={withPageView(Homepage)}/>
+          <Route path="/login"component={withPageView(SignInSide)}/>
+          <Route path="/register"component={withPageView(SignUp)}/>
+          <Route path="/booking"component={withPageView(MyBooking)}/>
+          <Route path="/reward"component={withPageView(Reward)}/>
           <Route exact path="/admin"><AdminHome/></Route>
           <Route path="/admin/member"><AdminMember/></Route>
           <Route path="/admin/reward"><AdminReward/></Route>
