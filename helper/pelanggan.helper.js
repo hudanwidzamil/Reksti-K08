@@ -19,18 +19,18 @@ const createUser = async (username_pelanggan, password, alamat, noHP, metodepemb
     }
 }
 
-// const getSaldo = async (NIM,nama) => {
-//     try {
+const loginPelanggan = async (username_pelanggan,password) => {
+    try {
         
-//         const saldo = await db.findOne({
-//             NIM : NIM,
-//             Nama : nama
-//         })
-//         return saldo
-//     } catch (err) {
-//         throw new Error(err)
-//     }
-// }
+        const loginPelanggan = await db.findOne({
+            username_pelanggan : username_pelanggan,
+            password : password
+        })
+        return loginPelanggan
+    } catch (err) {
+        throw new Error(err)
+    }
+}
 
 const deleteUser = async (username_pelanggan,password) => {
     try {
@@ -67,5 +67,7 @@ const deleteUser = async (username_pelanggan,password) => {
 
 module.exports = { 
     createUser,
-    deleteUser
+    deleteUser,
+    loginPelanggan,
+    // getPelanggan
  }

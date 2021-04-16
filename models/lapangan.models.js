@@ -5,15 +5,14 @@ const lapanganSchema = mongoose.Schema({
   lapangan_id: {
     type: Number,
     required: true,
-    unique: true
   },
   
   luas_lapangan: {
-    type: Int16Array,
+    type: Number,
     required: true
   },
   hargasewa: {
-    type: Int16Array,
+    type: Number,
     required: true
   },
   jamtersedia: {
@@ -22,7 +21,6 @@ const lapanganSchema = mongoose.Schema({
   },
   ketersediaan: {
     type: Boolean,
-    required: true
   },
   // Only added when book is returned
 //   BorrowingHistory: [

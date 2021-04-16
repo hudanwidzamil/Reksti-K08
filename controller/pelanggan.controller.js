@@ -1,6 +1,8 @@
 const { 
     createUser,
-    deleteUser
+    deleteUser,
+    // getPelanggan,
+    loginPelanggan 
  } = require("../helper/pelanggan.helper")
 
 //create user baru
@@ -88,3 +90,43 @@ exports.deleteUser = (req, res) => {
         })
     }
 }
+
+//get data pelanggan
+exports.loginPelanggan = (req,res) => {
+    var Username = req.param.username_pelanggan;
+    var Password = req.param.password;
+    console.log(Username,Password)
+
+    if (
+        Username && Password
+    ) {
+        loginPelanggan(
+            Username,
+            Password
+        )
+        .then(
+            result => {
+                if (JSON.stringify(result) !== 'null') {
+                    res.status(200).send({
+                        message : 'Ok!'
+                    })
+                } else {
+                    res.status(404).send({
+                        message : 'User Not Found, Please Register First!'
+                    })
+                }
+            },
+            err => {
+                res.status(500).send({
+                    message : err.message
+                })
+            }
+        )
+        .catch(err => {
+            res.status(500).send({
+              message: err.message
+            })
+          })
+    }
+}
+
