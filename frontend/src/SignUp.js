@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -43,8 +43,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+const SignUp = () => {
   const classes = useStyles();
+
+  const [values, setValues] = useState("");
+
+    const handleInputChange = e => {
+        const {name, value} = e.target
+        setValues({
+            ...values,
+            [name]:value
+        })
+    }
+
+    const handleSubmit = e =>{
+      e.preventDefault();
+      //callapi
+      window.alert(JSON.stringify(values))
+    }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -61,13 +77,15 @@ export default function SignUp() {
             <Grid item xs={12}>
               <TextField
                 autoComplete="fname"
-                name="fullName"
+                name="namaAkun"
                 variant="outlined"
                 required
                 fullWidth
-                id="fullName"
+                id="namaAkun"
                 label="Nama"
                 autoFocus
+                value={values.namaAkun}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -75,10 +93,11 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                id="email"
-                label="Alamat e-mail"
-                name="email"
-                autoComplete="email"
+                id="username_pelanggan"
+                label="Username"
+                name="username_pelanggan"
+                value={values.username_pelanggan}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -91,6 +110,32 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={values.password}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="noHP"
+                label="Nomor Telepon"
+                id="noHP"
+                value={values.noHP}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="alamat"
+                label="Alamat"
+                id="alamat"
+                value={values.alamat}
+                onChange={handleInputChange}
               />
             </Grid>
           </Grid>
@@ -100,6 +145,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit}
           >
             Mendaftar
           </Button>
@@ -118,3 +164,5 @@ export default function SignUp() {
     </Container>
   );
 }
+
+export default SignUp;
