@@ -2,14 +2,13 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 const db = require('../models/pelanggan.models')
 
-const createUser = async (username_pelanggan, password, alamat, noHP, metodepembayaran,namaAkun, poin) => {
+const createUser = async (username_pelanggan, password, alamat, noHP,namaAkun, poin) => {
     try {
         const result = db.create({
             username_pelanggan : username_pelanggan,
             password : password,
             alamat : alamat,
             noHP : noHP,
-            metodepembayaran : metodepembayaran,
             namaAkun : namaAkun,
             poin : poin
         })
@@ -44,6 +43,15 @@ const deleteUser = async (username_pelanggan,password) => {
     }
 }
 
+const getAllPelanggan = async () => {
+    try {
+      const pelanggan = await db.find()
+      return pelanggan
+    } catch (err) {
+      throw new Error(err)
+    }
+  }
+    
 // const tambahSaldo = async (NIM,nama,saldo) => {
 //     try {
 //         var saldoawal = await db.findOne({
@@ -69,5 +77,5 @@ module.exports = {
     createUser,
     deleteUser,
     loginPelanggan,
-    // getPelanggan
+    getAllPelanggan
  }

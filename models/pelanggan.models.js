@@ -19,16 +19,16 @@ const pelangganSchema = mongoose.Schema({
     type: String,
     // required: true
   },
-  metodepembayaran: {
-    type: String,
-    required: true
-  },
+  // metodepembayaran: {
+  //   type: String,
+  //   required: true
+  // },
   namaAkun: {
     type: String,
     required: true
   },
   poin: {
-    type: String,
+    type: Number,
     required: true
   },
   // Only added when book is returned

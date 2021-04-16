@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const Lapangan = require('../models/lapangan.models')
+const Pelanggan = require('../models/pelanggan.models')
 
 const reservasiSchema = mongoose.Schema({
    reservasi_id:{
@@ -7,25 +9,21 @@ const reservasiSchema = mongoose.Schema({
        unique: true
    },
     lapangan_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Lapangan'
+    type: mongoose.Schema.Types.Number,
+    ref: Lapangan
   },
   username_pelanggan: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Pelanggan'
+    type: mongoose.Schema.Types.String,
+    ref: Pelanggan
   },
   totalHarga: {
-      type: Int16Array
+      type: Number
   },
   metodePembayaran: {
       type: String,
   },
   durasiSewa: {
-    type: Date,
-    required: true
-  },
-  poin: {
-    type: String,
+    type: Number,
     required: true
   },
   timestampReservasi: {

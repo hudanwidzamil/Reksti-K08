@@ -1,7 +1,7 @@
 const { 
     createUser,
     deleteUser,
-    // getPelanggan,
+    getAllPelanggan,
     loginPelanggan 
  } = require("../helper/pelanggan.helper")
 
@@ -12,7 +12,6 @@ exports.createUser = (req, res) => {
         req.body.password,
         req.body.alamat,
         req.body.noHP,
-        req.body.metodepembayaran,
         req.body.namaAkun,
         req.body.poin
         )
@@ -21,7 +20,6 @@ exports.createUser = (req, res) => {
         req.body.password &&
         req.body.alamat &&
         req.body.noHP &&
-        req.body.metodepembayaran &&
         req.body.namaAkun &&
         req.body.poin
     ) {
@@ -30,7 +28,6 @@ exports.createUser = (req, res) => {
             req.body.password,
             req.body.alamat,
             req.body.noHP,
-            req.body.metodepembayaran,
             req.body.namaAkun,
             req.body.poin
         )
@@ -93,8 +90,8 @@ exports.deleteUser = (req, res) => {
 
 //get data pelanggan
 exports.loginPelanggan = (req,res) => {
-    var Username = req.param.username_pelanggan;
-    var Password = req.param.password;
+    var Username = req.body.username_pelanggan;
+    var Password = req.body.password;
     console.log(Username,Password)
 
     if (
@@ -130,3 +127,27 @@ exports.loginPelanggan = (req,res) => {
     }
 }
 
+exports.getPelanggan = (req, res) => {
+      getAllPelanggan()
+      .then(
+        pelanggan => {
+          if (JSON.stringify(pelanggan) !== 'null') {
+            res.status(200).json(pelanggan)
+          } else {
+            res.status(404).send({
+              message: 'Tidak ada pelanggan'
+            })
+          }
+        },
+        err => {
+          res.status(500).send({
+            message: err.message
+          })
+        }
+      )
+      .catch(err => {
+        res.status(500).send({
+          message: err.message
+        })
+      })
+  }

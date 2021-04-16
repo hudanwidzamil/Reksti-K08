@@ -17,7 +17,22 @@ const createLapangan = async (lapangan_id, luas_lapangan, hargasewa, jamtersedia
     }
 }
 
+const updateKetersediaan = async (lapangan_id) => {
+        try {
+            const tersedia = await db.updateOne({
+                lapangan_id : lapangan_id
+            },{
+                $set : {
+                    ketersediaan : false
+                }
+            })
+            return tersedia
+        } catch (err) {
+            throw new Error(err)
+        }
+    }
 module.exports = { 
-    createLapangan
+    createLapangan,
+    updateKetersediaan
     // getPelanggan
  }

@@ -1,5 +1,6 @@
 const { 
-    createLapangan 
+    createLapangan,
+    updateKetersediaan
  } = require("../helper/lapangan.helper")
 
 //create user baru
@@ -47,5 +48,38 @@ exports.createLapangan = (req, res) => {
         res.status(400).send({
             message :'Required body not found'
         })
+    }
+}
+
+exports.availableUpdate = (req,res) => {
+    if (
+        req.body.lapangan_id
+    ) { 
+        updateKetersediaan(
+            req.body.lapangan_id
+        )
+        .then(
+            kosong => {
+                if (JSON.stringify(kosong) !== 'null') {
+                    res.status(200).send({
+                        message : 'Available Updated!'
+                    })
+                } else {
+                    res.status(404).send({
+                        message : 'Lapangan Not Found, Please Register First!'
+                    })
+                }
+            },
+            err => {
+                res.status(500).send({
+                    message : err.message
+                })
+            }
+        )
+        .catch(err => {
+            res.status(500).send({
+              message: err.message
+            })
+          })
     }
 }

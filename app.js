@@ -29,7 +29,7 @@ mongoose.connect('mongodb://naufalalimw:nalimw12@cluster0-shard-00-00.kv1bh.mong
 const pelangganRoutes = require('./routes/pelanggan.routes')
 const adminRoutes = require('./routes/admin.routes')
 const lapanganRoutes = require('./routes/lapangan.routes')
-// const reservasiRoutes = require('./routes/reservasi.routes')
+const reservasiRoutes = require('./routes/reservasi.routes')
 // const promoRoutes = require('./routes/promo.routes')
 // App
 const app = express()
@@ -42,7 +42,7 @@ app.use(cors())
 app.use(pelangganRoutes)
 app.use(adminRoutes)
 app.use(lapanganRoutes)
-// app.use(reservasiRoutes)
+app.use(reservasiRoutes)
 // app.use(promoRoutes)
 
 module.exports = app;
