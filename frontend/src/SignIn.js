@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -77,7 +77,8 @@ const SignInSide = () => {
     .then(response => response.status)
     .then(res => {if (res==200) {
       window.alert("Login Sukses");
-      window.location.replace("/");  
+      window.location.replace("/"); 
+      localStorage.setItem("username_pelanggan",values.username_pelanggan); 
     }else{
       window.alert("Login Gagal");
     }});

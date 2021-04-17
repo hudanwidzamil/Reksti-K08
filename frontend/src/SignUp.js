@@ -64,7 +64,7 @@ const SignUp = () => {
       const response = Axios.post('http://localhost:8000/pelanggan/create',values);
       if (response.status = 201) {
         window.alert("Registrasi Berhasil");
-        window.location.replace("http://localhost:3000/login");  
+        window.location.replace("/login");  
       }else{
         window.alert("Registrasi Gagal");
       }

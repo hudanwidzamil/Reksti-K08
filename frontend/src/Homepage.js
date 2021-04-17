@@ -56,12 +56,11 @@ const App = () => {
   const classes = useStyles();
 
   //login things
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState({});
-
+  const [username_pelanggan, setUser] = useState(localStorage.getItem('username_pelanggan') || '');
+  const [isLoggedIn, setLoggedIn] = useState(username_pelanggan!=='');
   const handleLogoutClick = (e) =>{
-    e.preventDefault();
-    //call logout api
+    localStorage.removeItem('username_pelanggan');
+    window.location.reload();
   }
 
   const renderAuthButton = ()=>{
@@ -87,8 +86,9 @@ const App = () => {
                 </Link>
                 <Link variant="button" color="textPrimary" href="/reward" className={classes.link}>
                     Reward and Loyalty
-                </Link>
+                </Link>     
             </nav>
+              <Typography color="textPrimary">{username_pelanggan}</Typography>
             {renderAuthButton()}
             </Toolbar>
         </AppBar>

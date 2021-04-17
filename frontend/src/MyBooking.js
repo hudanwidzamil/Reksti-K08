@@ -75,6 +75,21 @@ const useStyles = makeStyles((theme) => ({
 const MyBooking= () => {
   const classes = useStyles();
 
+  //login things
+  const [username_pelanggan, setUser] = useState(localStorage.getItem('username_pelanggan') || '');
+  const [isLoggedIn, setLoggedIn] = useState(username_pelanggan!=='');
+  const handleLogoutClick = (e) =>{
+    localStorage.removeItem('username_pelanggan');
+    window.location.reload();
+  }
+
+  const renderAuthButton = ()=>{
+    if(isLoggedIn){
+      return <Button color="primary" variant="outlined" className={classes.link} onClick={handleLogoutClick}>Logout</Button>
+    } else{
+      return <Button href="/login" color="primary" variant="outlined" className={classes.link}>Login</Button>
+    }
+  }
   return (
     <React.Fragment>
         <CssBaseline />
@@ -93,9 +108,8 @@ const MyBooking= () => {
                     Reward and Loyalty
                 </Link>
             </nav>
-            <Button href="/login" color="primary" variant="outlined" className={classes.link}>
-                Login
-            </Button>
+            <Typography color="textPrimary">{username_pelanggan}</Typography>
+            {renderAuthButton()}
             </Toolbar>
         </AppBar>
         
