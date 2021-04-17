@@ -56,17 +56,20 @@ const useStyles = makeStyles((theme) => ({
 const SignInSide = () => {
   const classes = useStyles();
 
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [values, setValues] = useState([]);
+  const handleInputChange = e => {
+    const {name, value} = e.target
+    setValues({
+        ...values,
+        [name]:value
+    })
+  }
 
   const handleSubmit = e =>{
     e.preventDefault();
-    const response = Axios.get('http://localhost:8000/pelanggan/login',
-    {
-      username_pelanggan: username,
-      password: password,
-    });
-    window.alert(JSON.stringify(response.status));
+    const response = Axios.get('http://localhost:8000/pelanggan/login',values);
+    window.alert(JSON.stringify(values));
+    //window.alert(JSON.stringify(response.status));
   }
 
   return (
@@ -87,12 +90,12 @@ const SignInSide = () => {
               margin="normal"
               required
               fullWidth
-              id="username"
+              id="username_pelanggan"
               label="Username"
-              name="username"
+              name="username_pelanggan"
               autoFocus
-              defaultValue={username}
-              onChange={e => {setUsername(e.target.value)}}
+              defaultValue={values.username_pelanggan}
+              onChange={handleInputChange}
             />
             <TextField
               variant="outlined"
@@ -103,8 +106,8 @@ const SignInSide = () => {
               label="Password"
               type="password"
               id="password"
-              defaultValue={password}
-              onChange={e => {setPassword(e.target.value)}}
+              defaultValue={values.password}
+              onChange={handleInputChange}
             />
             <Button
               type="button"

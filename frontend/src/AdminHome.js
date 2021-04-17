@@ -79,6 +79,7 @@ export default function AdminHome() {
             <TableRow>
               <TableCell>ID</TableCell>
               <TableCell>Lapangan</TableCell>
+              <TableCell>Username</TableCell>
               <TableCell>Total Harga</TableCell>
               <TableCell>Metode Pembayaran</TableCell>
               <TableCell>Durasi Sewa</TableCell>
@@ -90,6 +91,7 @@ export default function AdminHome() {
               <TableRow key={el._id}>
                 <TableCell align="left">{el._id}</TableCell>
                 <TableCell align="left">{el.lapangan_id}</TableCell>
+                <TableCell align="left">{el.username_pelanggan}</TableCell>
                 <TableCell align="left">{el.totalHarga}</TableCell>
                 <TableCell align="left">{el.metodePembayaran}</TableCell>
                 <TableCell align="left">{el.durasiSewa}</TableCell>
