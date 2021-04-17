@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 // const swaggerUi = require('swagger-ui-express');
 const cors = require('cors')
 const mongoose = require('mongoose');
-
+const morgan = require('morgan');
 mongoose.Promise = require('bluebird')
 mongoose.set('useFindAndModify', false)
 require('dotenv').config()
@@ -38,6 +38,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.raw())
 app.use(cookieParser())
 app.use(cors())
+app.use(morgan('tiny'));
 
 app.use(pelangganRoutes)
 app.use(adminRoutes)
