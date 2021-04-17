@@ -67,9 +67,21 @@ const SignInSide = () => {
 
   const handleSubmit = e =>{
     e.preventDefault();
-    const response = Axios.get('http://localhost:8000/pelanggan/login',values);
-    window.alert(JSON.stringify(values));
-    //window.alert(JSON.stringify(response.status));
+    //const response = login()
+    Axios.post('http://localhost:8000/pelanggan/login',
+    values,
+    {headers:{
+      'Content-Type': "application/json",
+      'Access-Control-Allow-Origin': '*',
+    }})
+    .then(response => response.status)
+    .then(res => {if (res==200) {
+      window.alert("Login Sukses");
+      window.location.replace("/");  
+    }else{
+      window.alert("Login Gagal");
+    }});
+    //window.alert(response.status);
   }
 
   return (
