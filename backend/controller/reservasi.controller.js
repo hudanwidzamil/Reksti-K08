@@ -80,13 +80,7 @@ exports.getResevation = (req, res) => {
 exports.getresbyUser = (req,res) => {
   var Username = req.body.username_pelanggan;
   console.log(Username)
-
-  if (
-      Username
-  ) {
-      getReservasibypelanggan(
-          Username
-      )
+      getReservasibypelanggan(Username)
       .then(
           result => {
               if (JSON.stringify(result) !== 'null') {
@@ -103,10 +97,4 @@ exports.getresbyUser = (req,res) => {
               })
           }
       )
-      .catch(err => {
-          res.status(500).send({
-            message: err.message
-          })
-        })
-  }
 }

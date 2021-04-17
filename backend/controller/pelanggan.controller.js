@@ -2,7 +2,8 @@ const {
     createUser,
     deleteUser,
     getAllPelanggan,
-    loginPelanggan 
+    loginPelanggan,
+    getdataPelanggan 
  } = require("../helper/pelanggan.helper")
 
 //create user baru
@@ -151,3 +152,31 @@ exports.getPelanggan = (req, res) => {
         })
       })
   }
+
+exports.getOnePelanggan = (req,res) => {
+    var Username = req.body.username_pelanggan;
+    console.log(Username)
+
+    getdataPelanggan(Username)
+      .then(
+        pelanggan => {
+          if (JSON.stringify(pelanggan) !== 'null') {
+            res.status(200).json(pelanggan)
+          } else {
+            res.status(404).send({
+              message: 'Tidak ada pelanggan'
+            })
+          }
+        },
+        err => {
+          res.status(500).send({
+            message: err.message
+          })
+        }
+      )
+      .catch(err => {
+        res.status(500).send({
+          message: err.message
+        })
+      })
+}

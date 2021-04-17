@@ -51,7 +51,17 @@ const getAllPelanggan = async () => {
       throw new Error(err)
     }
   }
-    
+
+const getdataPelanggan = async (username_pelanggan) => {
+    try {
+      const pelanggan = await db.findOne({
+          username_pelanggan: username_pelanggan
+      })
+      return pelanggan
+    } catch (err) {
+      throw new Error(err)
+    }
+  }
 const tambahPoin = async (username_pelanggan) => {
     try {
         var poinawal = await db.findOne({
@@ -76,5 +86,6 @@ module.exports = {
     deleteUser,
     loginPelanggan,
     getAllPelanggan,
+    getdataPelanggan,
     tambahPoin
  }

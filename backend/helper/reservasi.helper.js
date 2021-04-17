@@ -50,9 +50,10 @@ const getAllReservasi = async () => {
       throw new Error(err)
     }
   }
-const getReservasibypelanggan = async () => {
+
+const getReservasibypelanggan = async (username_pelanggan) => {
   try {
-    const reservasipelanggan = await Reservasi.findOne({
+    const reservasipelanggan = await Reservasi.find({
       username_pelanggan: username_pelanggan
     })
     return reservasipelanggan
