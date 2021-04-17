@@ -154,7 +154,7 @@ exports.getPelanggan = (req, res) => {
   }
 
 exports.getOnePelanggan = (req,res) => {
-    var Username = req.body.username_pelanggan;
+    var Username = req.param('username_pelanggan');
     console.log(Username)
 
     getdataPelanggan(Username)

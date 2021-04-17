@@ -78,7 +78,7 @@ exports.getResevation = (req, res) => {
 }
 
 exports.getresbyUser = (req,res) => {
-  var Username = req.body.username_pelanggan;
+  var Username = req.param('username_pelanggan');
   console.log(Username)
       getReservasibypelanggan(Username)
       .then(
