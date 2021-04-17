@@ -15,7 +15,7 @@ const lapanganSchema = mongoose.Schema({
     type: Number,
     required: true
   },
-  jamtersedia: {
+  tanggaltersedia: {
     type: Date,
     required: true
   },

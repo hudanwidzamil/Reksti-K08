@@ -1,30 +1,26 @@
 const { 
     createReservasi,
-    getAllReservasi 
+    getAllReservasi,
+    getReservasibypelanggan
  } = require("../helper/reservasi.helper")
 
 //create user baru
 exports.createReservation = (req, res) => {
     console.log(
-        req.body.reservasi_id,
         req.body.lapangan_id,
         req.body.username_pelanggan, 
         req.body.totalHarga,
         req.body.metodePembayaran,
-        req.body.durasiSewa,
         req.body.timestampReservasi
         )
     if (
-        req.body.reservasi_id &&
         req.body.lapangan_id &&
         req.body.username_pelanggan && 
         req.body.totalHarga &&
         req.body.metodePembayaran &&
-        req.body.durasiSewa &&
         req.body.timestampReservasi
         ) {
         createReservasi(
-            req.body.reservasi_id,
             req.body.lapangan_id,
             req.body.username_pelanggan, 
             req.body.totalHarga,
@@ -79,4 +75,38 @@ exports.getResevation = (req, res) => {
         message: err.message
       })
     })
+}
+
+exports.getresbyUser = (req,res) => {
+  var Username = req.body.username_pelanggan;
+  console.log(Username)
+
+  if (
+      Username
+  ) {
+      getReservasibypelanggan(
+          Username
+      )
+      .then(
+          result => {
+              if (JSON.stringify(result) !== 'null') {
+                  res.status(200).json(result)
+              } else {
+                  res.status(404).send({
+                      message : 'Reservasi Not Found, Please Booking First!'
+                  })
+              }
+          },
+          err => {
+              res.status(500).send({
+                  message : err.message
+              })
+          }
+      )
+      .catch(err => {
+          res.status(500).send({
+            message: err.message
+          })
+        })
+  }
 }

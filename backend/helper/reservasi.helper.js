@@ -4,11 +4,13 @@ const Lapangan = require('../models/lapangan.models')
 const Reservasi = require('../models/reservasi.models')
 const Pelanggan = require('../models/pelanggan.models')
 const {updateKetersediaan} = require('../helper/lapangan.helper')
+const {tambahPoin} = require('../helper/pelanggan.helper')
 
-const createReservasi = async (reservasi_id,lapangan_id,username_pelanggan,totalHarga, metodePembayaran, durasiSewa, timestampReservasi) => {
+const createReservasi = async (lapangan_id,username_pelanggan,totalHarga, metodePembayaran, timestampReservasi) => {
     try {
       const lapangan = await Lapangan.findOne({
-        lapangan_id : lapangan_id
+        lapangan_id : lapangan_id,
+        tanggaltersedia: timestampReservasi
       })
       if (lapangan === null) {
         throw new Error('Lapangan not exist')
@@ -25,12 +27,12 @@ const createReservasi = async (reservasi_id,lapangan_id,username_pelanggan,total
         await updateKetersediaan(lapangan_id, {
           Borrowed: false
         })
+        await tambahPoin(username_pelanggan)
         const buatbooking = await Reservasi.create({
-          reservasi_id: reservasi_id,
           lapangan_id: lapangan_id,
+          username_pelanggan: username_pelanggan,
           totalHarga: totalHarga,
           metodePembayaran: metodePembayaran,
-          durasiSewa: durasiSewa,
           timestampReservasi: timestampReservasi
         })
         return buatbooking
@@ -40,16 +42,27 @@ const createReservasi = async (reservasi_id,lapangan_id,username_pelanggan,total
     }
   }
 
-  const getAllReservasi = async () => {
+const getAllReservasi = async () => {
     try {
-      const reservasi = await Reservasi.find()
-      return reservasi
+      const allreservasi = await Reservasi.find()
+      return allreservasi
     } catch (err) {
       throw new Error(err)
     }
   }
+const getReservasibypelanggan = async () => {
+  try {
+    const reservasipelanggan = await Reservasi.findOne({
+      username_pelanggan: username_pelanggan
+    })
+    return reservasipelanggan
+  } catch (err) {
+    throw new Error(err)
+  }
+}
 
   module.exports = {
       createReservasi,
-      getAllReservasi
+      getAllReservasi,
+      getReservasibypelanggan
   }

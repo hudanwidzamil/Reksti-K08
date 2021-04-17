@@ -52,30 +52,29 @@ const getAllPelanggan = async () => {
     }
   }
     
-// const tambahSaldo = async (NIM,nama,saldo) => {
-//     try {
-//         var saldoawal = await db.findOne({
-//             NIM : NIM,
-//             Nama : nama
-//         })
-//         console.log(typeof saldoawal.Saldo )
-//         const sisa = await db.updateOne({
-//             NIM : NIM,
-//             Nama : nama
-//         },{
-//             $set : {
-//                 Saldo : saldoawal.Saldo + parseInt(saldo)
-//             }
-//         })
-//         return sisa
-//     } catch (err) {
-//         throw new Error(err)
-//     }
-// }
+const tambahPoin = async (username_pelanggan) => {
+    try {
+        var poinawal = await db.findOne({
+            username_pelanggan: username_pelanggan
+        })
+        console.log(typeof poinawal.poin )
+        const sisa = await db.updateOne({
+            username_pelanggan: username_pelanggan
+        },{
+            $set : {
+                Saldo : poinawal.poin + 2
+            }
+        })
+        return sisa
+    } catch (err) {
+        throw new Error(err)
+    }
+}
 
 module.exports = { 
     createUser,
     deleteUser,
     loginPelanggan,
-    getAllPelanggan
+    getAllPelanggan,
+    tambahPoin
  }
