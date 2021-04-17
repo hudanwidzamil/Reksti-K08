@@ -23,9 +23,9 @@ function Copyright() {
   );
 }
 
-async function getList(){
-  const response = await Axios.get('http://localhost:8000/pelanggan/getall')
-  return response.data
+async function getData(){
+  const response = await Axios.get('http://localhost:8000/pelanggan/getone',{params:{username_pelanggan:localStorage.getItem('username_pelanggan')}});
+  return response.data;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -62,46 +62,13 @@ const Reward = () => {
   const classes = useStyles();
   const [list, setList] = useState([]);
 
-  useEffect(() => {
-    let mounted = true;
-    getList()
-      .then(items => {
-        if(mounted) {
-          setList(items)
-        }
-      })
-    return () => mounted = false;
-  }, [])
 
-  function RewardList() {
-    return (
-      <TableContainer component={Paper} style={{margin:35,width:'90%'}}>
-        <Table >
-          <TableHead>
-            <TableRow>
-              <TableCell>Member ID</TableCell>
-              <TableCell>Username</TableCell>
-              <TableCell>Poin</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {list.map((el)=>(
-              <TableRow key={el._id}>
-                <TableCell align="left">{el._id}</TableCell>
-                <TableCell align="left">{el.username_pelanggan}</TableCell>
-                <TableCell align="left">{el.poin}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-  
-        </Table>
-      </TableContainer>
-    );
-  }
 
   //login things
   const [username_pelanggan, setUser] = useState(localStorage.getItem('username_pelanggan') || '');
   const [isLoggedIn, setLoggedIn] = useState(username_pelanggan!=='');
+  const [data, setData] = useState('');
+
   const handleLogoutClick = (e) =>{
     localStorage.removeItem('username_pelanggan');
     window.location.reload();
@@ -114,6 +81,17 @@ const Reward = () => {
       return <Button href="/login" color="primary" variant="outlined" className={classes.link}>Login</Button>
     }
   }
+  useEffect(()=>{
+    let mounted = true;
+    getData()
+      .then(items => {
+        if(mounted) {
+          setData(items)
+        }
+      })
+    return () => mounted = false;
+  },[])
+  
 
   return (
     <React.Fragment>
@@ -139,7 +117,9 @@ const Reward = () => {
         </AppBar>
         
         <Typography variant="h4" className={classes.sideinfo}>Reward and Loyalty</Typography>
-        <RewardList/>
+        <Typography variant="h5" className={classes.sideinfo}>Poin anda:</Typography>
+        <Typography variant="h5" className={classes.sideinfo}>{JSON.stringify(data.poin)}</Typography>
+        
         <Box mt={5}>
           <Copyright />
         </Box>
