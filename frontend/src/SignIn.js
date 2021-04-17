@@ -61,17 +61,12 @@ const SignInSide = () => {
 
   const handleSubmit = e =>{
     e.preventDefault();
-    Axios.get('http://localhost:8000/pelanggan/login',
+    const response = Axios.get('http://localhost:8000/pelanggan/login',
     {
       username_pelanggan: username,
       password: password,
-    },
-    {headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    }})
-    .then(res=>window.alert(JSON.stringify(res.data)));
+    });
+    window.alert(JSON.stringify(response.status));
   }
 
   return (

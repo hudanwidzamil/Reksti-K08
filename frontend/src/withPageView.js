@@ -37,7 +37,7 @@ const withPageView = (WrappedComponent, options = {}) =>{
                 prevProps.location.pathname + prevProps.location.search;
             const nextPage = this.state.page;
 
-            if (currentPage != nextPage){
+            if (currentPage !== nextPage){
                 trackPageView(nextPage);
             }
         }

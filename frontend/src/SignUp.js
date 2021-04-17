@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+const Axios = require('axios');
 
 function Copyright() {
   return (
@@ -46,8 +47,8 @@ const useStyles = makeStyles((theme) => ({
 const SignUp = () => {
   const classes = useStyles();
 
-  const [values, setValues] = useState("");
-
+  const [values, setValues] = useState([]);
+  
     const handleInputChange = e => {
         const {name, value} = e.target
         setValues({
@@ -56,10 +57,18 @@ const SignUp = () => {
         })
     }
 
+    values.poin = 1;
+
     const handleSubmit = e =>{
       e.preventDefault();
-      //callapi
-      window.alert(JSON.stringify(values))
+      const response = Axios.post('http://localhost:8000/pelanggan/create',values);
+      if (response.status = 201) {
+        window.alert("Registrasi Berhasil");
+        window.location.replace("http://localhost:3000/login");  
+      }else{
+        window.alert("Registrasi Gagal");
+      }
+      
     }
 
   return (
