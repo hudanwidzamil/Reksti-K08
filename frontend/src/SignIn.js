@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+const Axios = require('axios');
 
 function Copyright() {
   return (
@@ -55,12 +56,22 @@ const useStyles = makeStyles((theme) => ({
 const SignInSide = () => {
   const classes = useStyles();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
 
   const handleSubmit = e =>{
     e.preventDefault();
-    //callapi
+    Axios.get('http://localhost:8000/pelanggan/login',
+    {
+      username_pelanggan: username,
+      password: password,
+    },
+    {headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    }})
+    .then(res=>window.alert(JSON.stringify(res.data)));
   }
 
   return (
@@ -101,7 +112,7 @@ const SignInSide = () => {
               onChange={e => {setPassword(e.target.value)}}
             />
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
               color="primary"

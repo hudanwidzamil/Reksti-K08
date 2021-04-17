@@ -94,8 +94,9 @@ const App = () => {
         </AppBar>
         <Grid container>
           <Grid item xs={6}>
-          <Typography variant="h4" className={classes.sideinfo}>Nama Lapangan Futsal</Typography>
-          <Typography variant="body1" className={classes.sideinfo}>Alamat</Typography>
+          <Typography variant="h4" className={classes.sideinfo}>Lapangan Futsal ABC</Typography>
+          <Typography variant="body1" className={classes.sideinfo}>Jl. A. Damyati No.23, RT.006/RW.003, Sukarasa, Kec. Tangerang, Kota Tangerang, Banten 15111
+          </Typography>
           <img src="https://4.bp.blogspot.com/-FoKOxTkDKiI/Vz1KsTvuH7I/AAAAAAAAATw/np2bzyi_ihUDppMhzLxHuQ3ALb283LMcwCLcB/s1600/LapanganFutsal%2BVinyl.jpg"
             alt="lapangan futsal" width="600" length="400" className={classes.sideinfo}/>  
           </Grid>

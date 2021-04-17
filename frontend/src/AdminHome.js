@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -9,7 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import { Paper, Table, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import { Paper, Table, TableCell, TableContainer, TableHead, TableRow, TableBody } from '@material-ui/core';
+import Axios from 'axios';
 
 function Copyright() {
   return (
@@ -22,25 +23,9 @@ function Copyright() {
   );
 }
 
-function BookingList() {
-  return (
-    <TableContainer component={Paper} style={{margin:35,width:'90%'}}>
-      <Table >
-        <TableHead>
-          <TableRow>
-            <TableCell>Book ID</TableCell>
-            <TableCell>Tanggal</TableCell>
-            <TableCell>Nama</TableCell>
-            <TableCell>Waktu Mulai</TableCell>
-            <TableCell>Waktu Akhir</TableCell>
-            <TableCell>Metode bayar</TableCell>
-            <TableCell>Total</TableCell>
-          </TableRow>
-        </TableHead>
-
-      </Table>
-    </TableContainer>
-  );
+async function getList(){
+  const response = await Axios.get('http://localhost:8000/reservasi/getall')
+  return response.data
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -75,7 +60,50 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AdminHome() {
   const classes = useStyles();
+  const [list, setList] = useState([]);
 
+  useEffect(() => {
+    let mounted = true;
+    getList()
+      .then(items => {
+        if(mounted) {
+          setList(items)
+        }
+      })
+    return () => mounted = false;
+  }, [])
+
+  function BookingList() {
+    return (
+      <TableContainer component={Paper} style={{margin:35,width:'90%'}}>
+        <Table >
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell>Lapangan</TableCell>
+              <TableCell>Total Harga</TableCell>
+              <TableCell>Metode Pembayaran</TableCell>
+              <TableCell>Durasi Sewa</TableCell>
+              <TableCell>Timestamp Reservasi</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {list.map((el)=>(
+              <TableRow key={el._id}>
+                <TableCell align="left">{el._id}</TableCell>
+                <TableCell align="left">{el.lapangan_id}</TableCell>
+                <TableCell align="left">{el.totalHarga}</TableCell>
+                <TableCell align="left">{el.metodePembayaran}</TableCell>
+                <TableCell align="left">{el.durasiSewa}</TableCell>
+                <TableCell align="left">{el.timestampReservasi}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+  
+        </Table>
+      </TableContainer>
+    );
+  }
   return (
     <React.Fragment>
         <CssBaseline />
