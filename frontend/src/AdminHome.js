@@ -77,24 +77,24 @@ export default function AdminHome() {
         <Table >
           <TableHead>
             <TableRow>
-              <TableCell>ID</TableCell>
               <TableCell>Lapangan</TableCell>
               <TableCell>Username</TableCell>
               <TableCell>Total Harga</TableCell>
               <TableCell>Metode Pembayaran</TableCell>
-              <TableCell>Durasi Sewa</TableCell>
+              <TableCell>Tanggal Sewa</TableCell>
+              <TableCell>Waktu Sewa</TableCell>
               <TableCell>Timestamp Reservasi</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {list.map((el)=>(
               <TableRow key={el._id}>
-                <TableCell align="left">{el._id}</TableCell>
                 <TableCell align="left">{el.lapangan_id}</TableCell>
                 <TableCell align="left">{el.username_pelanggan}</TableCell>
                 <TableCell align="left">{el.totalHarga}</TableCell>
                 <TableCell align="left">{el.metodePembayaran}</TableCell>
-                <TableCell align="left">{el.durasiSewa}</TableCell>
+                <TableCell align="left">{el.tanggaltersedia}</TableCell>
+                <TableCell align="left">{el.slotWaktu}</TableCell>
                 <TableCell align="left">{el.timestampReservasi}</TableCell>
               </TableRow>
             ))}

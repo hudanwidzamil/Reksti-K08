@@ -16,8 +16,8 @@ const createReservasi = async (lapangan_id,tanggaltersedia,slotWaktu,username_pe
       if (lapangan === null) {
         throw new Error('Lapangan not exist')
       }
-      if (lapangan.ketersediaan) {
-        //throw new Error('Lapangan tersedia')
+      if (!lapangan.ketersediaan) {
+        throw new Error('Lapangan tidak tersedia')
       }
       const pelanggan = await Pelanggan.findOne({
         username_pelanggan: username_pelanggan

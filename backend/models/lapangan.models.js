@@ -25,19 +25,7 @@ const lapanganSchema = mongoose.Schema({
   ketersediaan: {
     type: Boolean,
   },
-  // Only added when book is returned
-//   BorrowingHistory: [
-//     {
-//       type: mongoose.Schema.Types.ObjectId,
-//       ref: 'Member'
-//     }
-//   ]
 })
-
-// memberSchema.plugin(autoIncrement.plugin, {
-//   model: 'Lapangan',
-//   field: 'lapangan_id'
-// })
 
 const Lapangan = mongoose.model('Lapangan', lapanganSchema, 'Lapangans')
 
