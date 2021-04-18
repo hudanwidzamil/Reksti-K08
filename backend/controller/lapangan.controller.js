@@ -1,6 +1,7 @@
 const { 
     createLapangan,
-    updateKetersediaan
+    updateKetersediaan,
+    getAllLapangan
  } = require("../helper/lapangan.helper")
 
 //create user baru
@@ -9,14 +10,16 @@ exports.createLapangan = (req, res) => {
         req.body.lapangan_id,
         req.body.luas_lapangan,
         req.body.hargasewa,
-        req.body.jamtersedia,
+        req.body.tanggaltersedia,
+        req.body.slotWaktu,
         req.body.ketersediaan
         )
     if (
         req.body.lapangan_id &&
         req.body.luas_lapangan &&
         req.body.hargasewa &&
-        req.body.jamtersedia &&
+        req.body.tanggaltersedia &&
+        req.body.slotWaktu &&
         req.body.ketersediaan
         
     ) {
@@ -24,8 +27,9 @@ exports.createLapangan = (req, res) => {
             req.body.lapangan_id,
             req.body.luas_lapangan,
             req.body.hargasewa,
-            req.body.jamtersedia,
-            req.body.ketersediaa
+            req.body.tanggaltersedia,
+            req.body.slotWaktu,
+            req.body.ketersediaan
         )
         .then(
             result => {
@@ -56,7 +60,9 @@ exports.availableUpdate = (req,res) => {
         req.body.lapangan_id
     ) { 
         updateKetersediaan(
-            req.body.lapangan_id
+            req.body.lapangan_id,
+            req.body.tanggaltersedia,
+            req.body.slotWaktu
         )
         .then(
             kosong => {
@@ -82,4 +88,29 @@ exports.availableUpdate = (req,res) => {
             })
           })
     }
+}
+
+exports.getLapangan = (req,res) => {
+    getAllLapangan()
+    .then(
+        lapangan => {
+          if (JSON.stringify(lapangan) !== 'null') {
+            res.status(200).json(lapangan)
+          } else {
+            res.status(404).send({
+              message: 'Tidak ada lapangan'
+            })
+          }
+        },
+        err => {
+          res.status(500).send({
+            message: err.message
+          })
+        }
+      )
+      .catch(err => {
+        res.status(500).send({
+          message: err.message
+        })
+      })
 }

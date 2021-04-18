@@ -19,6 +19,9 @@ const lapanganSchema = mongoose.Schema({
     type: Date,
     required: true
   },
+  slotWaktu: {
+    type: String,
+  },
   ketersediaan: {
     type: Boolean,
   },
