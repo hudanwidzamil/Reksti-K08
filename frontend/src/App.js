@@ -8,6 +8,7 @@ import AdminHome from './AdminHome';
 import AdminMember from './AdminMember';
 import AdminReward from './AdminReward';
 import AdminLapangan from './AdminLapangan';
+import AdminManage from './AdminManage';
 import withPageView from './withPageView';
 
 import {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/admin/member"><AdminMember/></Route>
           <Route path="/admin/reward"><AdminReward/></Route>
           <Route path="/admin/lapangan"><AdminLapangan/></Route>
+          <Route path="/admin/manage"><AdminManage/></Route>
         </Switch>
       </div>
     </Router>

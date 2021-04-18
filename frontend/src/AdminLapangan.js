@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AdminHome() {
+export default function AdminLapangan() {
   const classes = useStyles();
   const [list, setList] = useState([]);
 
@@ -118,6 +118,12 @@ export default function AdminHome() {
                 </Link>
                 <Link variant="button" color="textPrimary" href="/admin/reward" className={classes.link}>
                     Reward and Loyalty
+                </Link>
+                <Link variant="button" color="textPrimary" href="/admin/lapangan" className={classes.link}>
+                    Lapangan
+                </Link>
+                <Link variant="button" color="textPrimary" href="/admin/manage" className={classes.link}>
+                    Manage
                 </Link>
             </nav>
             </Toolbar>
