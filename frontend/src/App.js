@@ -7,6 +7,7 @@ import Reward from './Reward';
 import AdminHome from './AdminHome';
 import AdminMember from './AdminMember';
 import AdminReward from './AdminReward';
+import AdminLapangan from './AdminLapangan';
 import withPageView from './withPageView';
 
 import {
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/admin"><AdminHome/></Route>
           <Route path="/admin/member"><AdminMember/></Route>
           <Route path="/admin/reward"><AdminReward/></Route>
+          <Route path="/admin/lapangan"><AdminLapangan/></Route>
         </Switch>
       </div>
     </Router>
