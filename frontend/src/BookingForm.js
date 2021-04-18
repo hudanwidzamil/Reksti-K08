@@ -6,14 +6,16 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import Axios from 'axios';
 
 const initialValues = {
-    bookDate: new Date(),
-    startTime: 10,
-    endTime: 11,
-    field: 'a',
-    isAvailable: false,
-    paymentMethod: 'gopay',
+    lapangan_id: 1,
+    tanggaltersedia: new Date("2021-04-19"),
+    slotWaktu: "9-11",
+    username_pelanggan: localStorage.getItem('username_pelanggan'),
+    totalHarga: 200000,
+    metodePembayaran: 'gopay',
+    timestampReservasi: new Date(),
 }
 
 const useStyles = makeStyles((theme)=>({
@@ -46,6 +48,19 @@ export default function BookingForm(){
         }
     })
 
+    const handleSubmit = e =>{
+        e.preventDefault();
+        Axios.post('http://localhost:8000/reservasi/create',values)
+        .then(response => response.status)
+        .then(res => {if (res==201) {
+            window.alert("Reservasi Sukses");
+            window.location.reload();
+        }else{
+            window.alert("Reservasi Gagal");
+        }});
+        
+      }
+
     return (
         <form>
             <FormControl className={classes.input}>
@@ -55,76 +70,54 @@ export default function BookingForm(){
                     <KeyboardDatePicker
                         disableToolbar
                         variant="inline"
-                        format="MM/dd/yyyy"
+                        format="yyyy-MM-dd"
                         margin="normal"
-                        id="bookDate"
-                        name="bookDate"
-                        value={values.bookDate}
-                        onChange={date =>handleInputChange(convertToDefEventPara("bookDate",date))}
+                        id="tanggaltersedia"
+                        name="tanggaltersedia"
+                        value={values.tanggaltersedia}
+                        onChange={date =>handleInputChange(convertToDefEventPara("tanggaltersedia",date))}
                     />
                 </MuiPickersUtilsProvider>
                 
-                <FormLabel className={classes.title}>Waktu Mulai</FormLabel>
+                <FormLabel className={classes.title}>Waktu</FormLabel>
                 <Select
-                name="startTime"
-                label="startTime"
-                value={values.startTime}
+                name="slotWaktu"
+                label="slotWaktu"
+                value={values.slotWaktu}
                 onChange={handleInputChange}>
-                    <MenuItem value={10}>10.00</MenuItem>
-                    <MenuItem value={11}>11.00</MenuItem>
-                    <MenuItem value={12}>12.00</MenuItem>
-                    <MenuItem value={13}>13.00</MenuItem>
-                    <MenuItem value={14}>14.00</MenuItem>
-                    <MenuItem value={15}>15.00</MenuItem>
-                    <MenuItem value={16}>16.00</MenuItem>
-                    <MenuItem value={17}>17.00</MenuItem>
-                    <MenuItem value={18}>18.00</MenuItem>
-                    <MenuItem value={19}>19.00</MenuItem>
-                    <MenuItem value={20}>20.00</MenuItem>
-                    <MenuItem value={21}>21.00</MenuItem>
-                    <MenuItem value={22}>22.00</MenuItem>
+                    <MenuItem value="9-11">9-11</MenuItem>
+                    <MenuItem value="11-13">11-13</MenuItem>
+                    <MenuItem value="13-15">13-15</MenuItem>
+                    <MenuItem value="15-17">15-17</MenuItem>
+                    <MenuItem value="17-19">17-19</MenuItem>
+                    <MenuItem value="19-21">19-21</MenuItem>
                 </Select>
-                
-                <FormLabel className={classes.title}>Waktu Akhir</FormLabel>
-                <Select
-                name="endTime"
-                label="endTime"
-                value={values.endTime}
-                onChange={handleInputChange}>
-                    <MenuItem value={10}>10.00</MenuItem>
-                    <MenuItem value={11}>11.00</MenuItem>
-                    <MenuItem value={12}>12.00</MenuItem>
-                    <MenuItem value={13}>13.00</MenuItem>
-                    <MenuItem value={14}>14.00</MenuItem>
-                    <MenuItem value={15}>15.00</MenuItem>
-                    <MenuItem value={16}>16.00</MenuItem>
-                    <MenuItem value={17}>17.00</MenuItem>
-                    <MenuItem value={18}>18.00</MenuItem>
-                    <MenuItem value={19}>19.00</MenuItem>
-                    <MenuItem value={20}>20.00</MenuItem>
-                    <MenuItem value={21}>21.00</MenuItem>
-                    <MenuItem value={22}>22.00</MenuItem>
-                </Select>             
+                     
                 
                 <FormLabel className={classes.title}>Lapangan</FormLabel>
-                <RadioGroup row
-                name="field"
-                value={values.field}
+                <Select
+                name="lapangan_id"
+                label="lapangan_id"
+                value={values.lapangan_id}
                 onChange={handleInputChange}>
-                    <FormControlLabel value ="a" control={<Radio/>} label="Lapangan A"/>
-                    <FormControlLabel value ="b" control={<Radio/>} label="Lapangan B"/>
-                </RadioGroup>
+                    <MenuItem value={1}>Lapangan 1</MenuItem>
+                    <MenuItem value={2}>Lapangan 2</MenuItem>
+                    <MenuItem value={3}>Lapangan 3</MenuItem>
+                </Select>
+            
                 
                 <FormLabel className={classes.title}>Metode pembayaran</FormLabel>
-                <RadioGroup row
-                name="paymentMethod"
-                value={values.paymentMethod}
+                <Select
+                name="metodePembayaran"
+                label="metodePembayaran"
+                value={values.metodePembayaran}
                 onChange={handleInputChange}>
-                    <FormControlLabel value ="gopay" control={<Radio/>} label="Gopay"/>
-                    <FormControlLabel value ="ovo" control={<Radio/>} label="OVO"/>
-                    <FormControlLabel value ="linkaja" control={<Radio/>} label="LinkAja"/>
-                </RadioGroup>
-            <Button>PESAN</Button>
+                    <MenuItem value="gopay">Gopay</MenuItem>
+                    <MenuItem value="ovo">OVO</MenuItem>
+                    <MenuItem value="linkaja">LinkAja</MenuItem>
+                    <MenuItem value="tunai">Tunai</MenuItem>
+                </Select>
+            <Button onClick={handleSubmit}>PESAN</Button>
             </FormControl>
         </form>
     )
