@@ -72,7 +72,7 @@ const tambahPoin = async (username_pelanggan) => {
             username_pelanggan: username_pelanggan
         },{
             $set : {
-                Saldo : poinawal.poin + 2
+                poin : poinawal.poin + 2
             }
         })
         return sisa
