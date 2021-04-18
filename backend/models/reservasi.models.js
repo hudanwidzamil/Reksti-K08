@@ -3,14 +3,15 @@ const Lapangan = require('../models/lapangan.models')
 const Pelanggan = require('../models/pelanggan.models')
 
 const reservasiSchema = mongoose.Schema({
-  //  reservasi_id:{
-  //      type: String,
-  //      required: true,
-  //      unique: true
-  //  },
-    lapangan_id: {
+  lapangan_id: {
     type: mongoose.Schema.Types.Number,
     ref: Lapangan
+  },
+  tanggaltersedia: {
+    type: Date,
+  },
+  slotWaktu: {
+    type: String,
   },
   username_pelanggan: {
     type: mongoose.Schema.Types.String,
@@ -22,10 +23,6 @@ const reservasiSchema = mongoose.Schema({
   metodePembayaran: {
       type: String,
   },
-  // durasiSewa: {
-  //   type: Number,
-  //   required: true
-  // },
   timestampReservasi: {
       type: Date
   }

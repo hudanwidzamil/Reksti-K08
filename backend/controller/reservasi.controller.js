@@ -8,6 +8,8 @@ const {
 exports.createReservation = (req, res) => {
     console.log(
         req.body.lapangan_id,
+        req.body.tanggaltersedia,
+        req.body.slotWaktu,
         req.body.username_pelanggan, 
         req.body.totalHarga,
         req.body.metodePembayaran,
@@ -15,6 +17,8 @@ exports.createReservation = (req, res) => {
         )
     if (
         req.body.lapangan_id &&
+        req.body.tanggaltersedia &&
+        req.body.slotWaktu &&
         req.body.username_pelanggan && 
         req.body.totalHarga &&
         req.body.metodePembayaran &&
@@ -22,10 +26,11 @@ exports.createReservation = (req, res) => {
         ) {
         createReservasi(
             req.body.lapangan_id,
+            req.body.tanggaltersedia,
+            req.body.slotWaktu,
             req.body.username_pelanggan, 
             req.body.totalHarga,
             req.body.metodePembayaran,
-            req.body.durasiSewa,
             req.body.timestampReservasi
         )
         .then(
